@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-LABEL SERVICE_NAME=wallets
+LABEL SERVICE_NAME=orders
 ENV APP_NAME orders.jar
 ENV APP_HOME .
 ENV LANG en_US.UTF-8
@@ -8,3 +8,5 @@ ENV LANG en_US.UTF-8
 ADD target/*.jar ${APP_HOME}/${APP_NAME}
 
 ENTRYPOINT java -jar ${JAVA_OPTS} ${APP_NAME}
+
+EXPOSE 8080

@@ -1,16 +1,30 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
       - echo Build started on `date`
-      - mvn test
+      - mvn package
+      - IMAGE_TAG="`cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2`"
+      - echo $IMAGE_TAG
+      - docker build -t $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG .
+      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
+      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $ECR_REPOSITORY:$IMAGE_LATEST_TAG
+      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $ECR_REPOSITORY:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
-      - mvn package
+      - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
+      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG
+      - docker push $ECR_REPOSITORY:$IMAGE_LATEST_TAG
+      - docker push $ECR_REPOSITORY:$IMAGE_TAG
 artifacts:
   files:
-    - target/order-1.0.0-SNAPSHOT.jar
+    - target/*.jar
     - appspec.yml
   discard-paths: yes

@@ -18,7 +18,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-<!--        <aws-sdk-version>2.15.21</aws-sdk-version>-->
+        <!--        <aws-sdk-version>2.15.21</aws-sdk-version>-->
         <aws-sdk-version>2.5.66</aws-sdk-version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <dynamo-db-local-version>1.11.86</dynamo-db-local-version>
@@ -99,6 +99,16 @@
             <artifactId>DynamoDBLocal</artifactId>
             <version>${dynamo-db-local-version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-stream</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mqtt</artifactId>
         </dependency>
     </dependencies>
 

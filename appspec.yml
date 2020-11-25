@@ -1,5 +1,9 @@
 version: 0.0
-os: linux
-files:
-  - source: ./order-1.0.0-SNAPSHOT.jar
-    destination: /tmp
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: run-fabiod-blueechlab
+        LoadBalancerInfo:
+          ContainerName: "bluetechlab"
+          ContainerPort: 80

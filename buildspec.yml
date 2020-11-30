@@ -12,7 +12,9 @@ phases:
       - echo Build started on `date`
       - mvn package -DskipTests
       - echo "`ls -l \target`"
-      - IMAGE_TAG=cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2
+      - echo "`cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2`"
+      - echo "`ls -l target/maven-archiver/`"
+      - IMAGE_TAG="`cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2`"
       - echo $IMAGE_TAG
       - docker build -t $REPOSITORY_URI:$IMAGE_LATEST_TAG .
       - docker tag $REPOSITORY_URI:$IMAGE_LATEST_TAG $REPOSITORY_URI:$IMAGE_TAG

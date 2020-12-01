@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "bluetechlab-docker",
-      "image": "bluetechlab",
+      "image": "<IMAGE1_NAME>",
       "essential": true,
       "portMappings": [
         {

@@ -5,8 +5,8 @@ ENV APP_NAME orders.jar
 ENV APP_HOME .
 ENV LANG en_US.UTF-8
 
-EXPOSE 8080
-
 ADD target/*.jar ${APP_HOME}/${APP_NAME}
 
 ENTRYPOINT java -jar ${JAVA_OPTS} ${APP_NAME}
+
+EXPOSE 8080

@@ -5,7 +5,7 @@ ENV APP_NAME orders.jar
 ENV APP_HOME .
 ENV LANG en_US.UTF-8
 
-EXPOSE 80
+EXPOSE 8080
 
 ADD target/*.jar ${APP_HOME}/${APP_NAME}
 

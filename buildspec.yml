@@ -12,6 +12,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
       - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
       - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG
 artifacts:

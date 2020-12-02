@@ -14,8 +14,8 @@ phases:
       - echo Build completed on `date`
       - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
       - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG
-  artifacts:
-    files:
-      - target/*.jar
-      - appspec.yml
-    discard-paths: yes
+artifacts:
+  files:
+    - target/*.jar
+    - appspec.yml
+  discard-paths: yes

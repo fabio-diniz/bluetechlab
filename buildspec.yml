@@ -11,6 +11,7 @@ phases:
 #      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
+      - echo $(ls)
       - ssh -i fabiod_aws_docker.pem ec2-user@18.189.44.178 sudo docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
       - echo Build completed on `date`
 #      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG

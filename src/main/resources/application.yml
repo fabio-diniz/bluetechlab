@@ -13,7 +13,8 @@ mqtt:
 
 info:
   app:
-    name: fabiod-bluetechlab-order
-    description: teste info fabio
+    name: fabiod bluetechlab order
+    description: order application bluetechlab
+    version: @project.version@
 
 

@@ -4,14 +4,14 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn package -DskipTests
-      - IMAGE_TAG="`cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2`"
-      - echo $IMAGE_TAG
-      - docker build -t $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG .
-      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
+#      - mvn package -DskipTests
+#      - IMAGE_TAG="`cat target/maven-archiver/pom.properties | grep version | cut -d'=' -f 2`"
+#      - echo $IMAGE_TAG
+#      - docker build -t $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG .
+#      - docker tag $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - ssh -i fabiod_aws_docker.pem ec2-user@18.189.44.178 sudo docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
       - echo Build completed on `date`
-      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
-      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG
+#      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_TAG
+#      - docker push $DOCKER_HUB_REPOSITORY_URI:$IMAGE_LATEST_TAG

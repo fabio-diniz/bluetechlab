@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-LABEL SERVICE_NAME=wallets
+LABEL SERVICE_NAME=orders
 ENV APP_NAME orders.jar
 ENV APP_HOME .
 ENV LANG en_US.UTF-8

@@ -1,9 +1,0 @@
-version: 0.0
-Resources:
-  - TargetService:
-      Type: AWS::ECS::Service
-      Properties:
-        TaskDefinition: run-fabiod-blueechlab
-        LoadBalancerInfo:
-          ContainerName: "bluetechlab"
-          ContainerPort: 80
